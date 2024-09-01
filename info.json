@@ -1,0 +1,14 @@
+{
+    "name": "environtorio",
+    "version": "0.0.1",
+    "title": "Environtorio",
+    "author": "redplasticstraw",
+    "factorio_version": "1.1",
+    "dependencies": [
+        "base >= 1.1", 
+        "Krastorio2 >= 1.3.22",
+        "informatron >= 0.3.4",
+        "alien-biomes >= 0.6.8"
+    ],
+    "description": "A Krastorio 2 extension that adds new machines, structures, technology, and more."
+  }
