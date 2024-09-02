@@ -338,6 +338,7 @@ magmatic_stabilizer.update_stabilizer = function (data)
 end
 
 magmatic_stabilizer.erupt = function (data)
+    data.main_entity.minable = false
     game.print("WE ARE SUPPOSED TO ERUPT!!!")
 end
 
@@ -366,24 +367,27 @@ magmatic_stabilizer.update_gui = function (data)
 
             local charge = entity.energy / entity.electric_buffer_size
             refs.energy_bar.value = charge
-            refs.energy_bar.caption = round(charge * 100) .. "%"
-            refs.energy_current_label.caption = string.format("Current Usage: %3d MW", round(stabilizer_data.last_energy_draw * 60 / math.pow(10, 6)))
+            --refs.energy_bar.caption = round(charge * 100) .. "%"
+            refs.energy_current_label_number.caption = string.format("%3d MW", round(stabilizer_data.last_energy_draw * 60 / math.pow(10, 6)))
             
             local fluid_amount = stabilizer_data.tank.fluidbox[1] or {amount = 0}
             local fluid_total = stabilizer_data.tank.fluidbox.get_capacity(1)
             local fluid_percentage = fluid_amount.amount / fluid_total
             refs.steam_bar.value = fluid_percentage
-            refs.steam_bar.caption = tostring(round(fluid_amount.amount)) .. " / " .. tostring(round(fluid_total))
-            refs.steam_current_label.caption = string.format("Current Usage: %3d Steam / second", round(stabilizer_data.last_steam_draw * 60))
+            refs.steam_bar_label_number.caption = tostring(round(fluid_amount.amount)) .. " / " .. tostring(round(fluid_total))
+            refs.steam_current_label_number.caption = string.format("%3d Steam / s", round(stabilizer_data.last_steam_draw * 60))
 
             local minutes = math.floor(stabilizer_data.duration_left / 3600)
             local seconds = math.floor((stabilizer_data.duration_left % 3600) / 60)
-            refs.time_remaining_label.caption = "Remaining: " .. string.format("%02d:%02d", minutes, seconds)
+            refs.time_remaining_label_number.caption = string.format("%02d:%02d", minutes, seconds)
 
             if stabilizer_data.activated then
                 refs.activate_button.enabled = false
                 refs.activate_button.caption = "In Progress..."
                 refs.activate_button.tooltip = "The stabilizer cycle is currently running. Wait to change settings."
+
+                refs.status_sprite.sprite = "utility/status_working"
+                refs.status_label.caption = "Cycle In Progress..."
 
                 refs.stabilization_level_slider.enabled = false
             else
@@ -392,10 +396,16 @@ magmatic_stabilizer.update_gui = function (data)
                     refs.activate_button.enabled = true
                     refs.activate_button.caption = "Activate"
                     refs.activate_button.tooltip = "The stabilizer is ready to activate."
+
+                    refs.status_sprite.sprite = "utility/status_yellow"
+                    refs.status_label.caption = "Awaiting Activation"
                 else
                     refs.activate_button.enabled = false
                     refs.activate_button.caption = "Insufficient"
                     refs.activate_button.tooltip = "The stabilizer needs to be at least 20% full of energy and steam in order to start."
+
+                    refs.status_sprite.sprite = "utility/status_not_working"
+                    refs.status_label.caption = "Insufficient Steam / Energy"
                 end
             end
 
@@ -404,13 +414,13 @@ magmatic_stabilizer.update_gui = function (data)
                 count = count + 1
             end
 
-            refs.eruption_chance_label.caption = "Eruption Chance:  " .. string.format("%3d",round(stabilization_level_data.eruption_chance * 100)) .. "%"
+            refs.eruption_chance_label_number.caption = string.format("%3d",round(stabilization_level_data.eruption_chance * 100)) .. "%"
 
-            refs.energy_target_label.caption = "Target Usage: " .. tostring(stabilization_level_data.target_energy_usage) .. " MW"
+            refs.energy_target_label_number.caption = tostring(stabilization_level_data.target_energy_usage) .. " MW"
 
-            refs.steam_target_label.caption = "Target Usage: " .. tostring(stabilization_level_data.target_steam_usage) .. " Steam / second"
+            refs.steam_target_label_number.caption = tostring(stabilization_level_data.target_steam_usage) .. " Steam / s"
 
-            refs.status_pump_count.caption = tostring(count) .. " Connected Pumps"
+            --refs.status_pump_count.caption = tostring(count) .. " Connected Pumps"
         end
     end
 end
@@ -433,8 +443,8 @@ magmatic_stabilizer.create_gui = function (player, entity)
     refs.status_flow.style.vertical_align = "center"
 
     refs.status_sprite = refs.status_flow.add{type = "sprite", style = "status_image", name = "magmatic-stabilizer-status-sprite", sprite = "utility/status_not_working" }
-    refs.status_label = refs.status_flow.add{type = "label", name = "magmatic-stabilizer-status-label", caption = "What the fuck!"}
-    refs.status_pump_count = refs.status_flow.add{type = "label", name = "magmatic-stabilizer-pump-label", caption = "0 Connected Pumps"}
+    refs.status_label = refs.status_flow.add{type = "label", name = "magmatic-stabilizer-status-label", caption = "Waiting for charge"}
+    refs.status_pump_count = refs.status_flow.add{type = "label", name = "magmatic-stabilizer-pump-label", caption = ""}
 
     refs.entity_preview_frame = refs.entity_frame.add{type = "frame", style = "deep_frame_in_shallow_frame"}
     refs.entity_preview = refs.entity_preview_frame.add{type = "entity-preview", style = "wide_entity_button", style_mods = { vertical_align = "center" }}
@@ -454,32 +464,79 @@ magmatic_stabilizer.create_gui = function (player, entity)
 
     refs.activate_button = refs.stability_frame.add{type = "button", name = "magmatic-stabilizer-activate-button", caption = "Activate"}
 
-    refs.slider_frame = refs.entity_frame.add{type = "flow", direction = "horizontal", style = "player_input_horizontal_flow"}
+    refs.slider_frame = refs.entity_frame.add{type = "flow", direction = "vertical", style = "vertical_flow"}
     refs.slider_frame.style.horizontal_align = "center"
     refs.slider_frame.style.horizontally_stretchable = true
 
-    refs.stabilization_level_slider = refs.slider_frame.add{type="slider", name = "magmatic-stabilizer-level-selector", value = stabilizer_data.stabilization_level, minimum_value=1, maximum_value = magmatic_stabilizer.get_available_stabilization_levels(player.index), style="notched_slider"}
-    refs.stabilization_level_label = refs.slider_frame.add{type = "label", name = "magmatib-stabilizer-level-label", caption = "Stabilization Level " .. tostring(stabilizer_data.stabilization_level)}
-    refs.eruption_chance_label = refs.slider_frame.add{type = "label", name = "magmatic-stabilizer-eruption-label", caption = "Eruption Chance:  50%", tooltip = "The chance for the magmacyte well to erupt at the end of the cycle. Higher tiers of stabilization reduce this chance."}
-    refs.auto_activate_checkbox = refs.slider_frame.add{type = "checkbox", name = "magmatic-stabilizer-autoactivate", caption = "Auto-activate", state = stabilizer_data.auto_activate, tooltip = "When enabled, activates the stabilizer as soon as there is at least 20% energy and steam."}
+    refs.slider_flow = refs.slider_frame.add{type = "flow", direction = "horizontal", style = "player_input_horizontal_flow"}
+    refs.slider_flow.style.horizontal_spacing = 4
 
-    refs.time_remaining_label = refs.slider_frame.add{type = "label", name = "magmatic-stabilizer-time-remainging", caption = "Remaining: 00:00", tooltip = "The amount of time left in the stabilization cycle. When the cycle ends, there is a chance for the magmacyte well to erupt."}
+    refs.stabilization_level_slider = refs.slider_flow.add{type="slider", name = "magmatic-stabilizer-level-selector", value = stabilizer_data.stabilization_level, minimum_value=1, maximum_value = magmatic_stabilizer.get_available_stabilization_levels(player.index), style="notched_slider"}
+    refs.stabilization_level_label = refs.slider_flow.add{type = "label", name = "magmatib-stabilizer-level-label", caption = "Stabilization Level:", style = "description_property_name_label"}
+    refs.stabilization_level_label_number = refs.slider_flow.add{type = "label", name = "magmatib-stabilizer-level-label-number", caption = tostring(stabilizer_data.stabilization_level)}
+    refs.auto_activate_checkbox = refs.slider_flow.add{type = "checkbox", name = "magmatic-stabilizer-autoactivate", caption = "Auto-activate", state = stabilizer_data.auto_activate, tooltip = "When enabled, activates the stabilizer as soon as there is at least 20% energy and steam."}
+
+    refs.slider_frame_lower = refs.slider_frame.add{type = "flow", direction = "horizontal", style = "player_input_horizontal_flow"}
+
+    refs.eruption_chance_label = refs.slider_frame_lower.add{type = "label", name = "magmatic-stabilizer-eruption-label", caption = "Eruption Chance:", tooltip = "The chance for the magmacyte well to erupt at the end of the cycle. Higher tiers of stabilization reduce this chance.", style = "description_property_name_label"}
+    refs.eruption_chance_label_number = refs.slider_frame_lower.add{type = "label", name = "magmatic-stabilizer-eruption-label-number", caption = "50%", tooltip = "The chance for the magmacyte well to erupt at the end of the cycle. Higher tiers of stabilization reduce this chance."}
+
+    refs.time_remaining_label = refs.slider_frame_lower.add{type = "label", name = "magmatic-stabilizer-time-remaining", caption = "Time Remaining:", tooltip = "The amount of time left in the stabilization cycle. When the cycle ends, there is a chance for the magmacyte well to erupt.", style = "description_property_name_label"}
+    refs.time_remaining_label_number = refs.slider_frame_lower.add{type = "label", name = "magmatic-stabilizer-time-remaining-number", caption = "00:00", tooltip = "The amount of time left in the stabilization cycle. When the cycle ends, there is a chance for the magmacyte well to erupt."}
 
     refs.entity_frame.add{type="line"}
 
-    refs.energy_usage_frame = refs.entity_frame.add{type = "flow", direction = "horizontal", style = "player_input_horizontal_flow"}
+    refs.lower_frame = refs.entity_frame.add{type = "flow", style = "player_input_horizontal_flow", direction = "horizontal"}
 
-    refs.energy_bar = refs.energy_usage_frame.add{type = "progressbar", style = "production_progressbar", name = "magmatic-stabilizer-energy-usage-bar"}
-    refs.energy_current_label = refs.energy_usage_frame.add{type = "label", name = "magmatic-stabilizer-energy-current-label", caption = "Current Usage: 10 MW"}
-    refs.energy_target_label = refs.energy_usage_frame.add{type = "label", name = "magmatic-stabilizer-energy-target-label", caption = "Target Usage: 10 MW"}
+    refs.energy_usage_frame = refs.lower_frame.add{type = "flow", direction = "vertical", style = "vertical_flow"}
 
-    refs.entity_frame.add{type="line"}
+    refs.energy_bar_flow = refs.energy_usage_frame.add{type = "flow", style = "vertical_flow", direction = "vertical"}
+    
+    refs.energy_bar_label_flow = refs.energy_bar_flow.add{type = "flow", style = "horizontal_flow", direction = "horizontal"}
+    refs.energy_bar_label = refs.energy_bar_label_flow.add{type = "label", caption = "Electricity:", style = "description_property_name_label"}
+    refs.energy_bar_label_number = refs.energy_bar_label_flow.add{type = "label", caption = "0.0 GJ of 5.0 GJ"}
 
-    refs.steam_usage_frame = refs.entity_frame.add{type = "flow", direction = "horizontal", style = "player_input_horizontal_flow"}
+    refs.energy_bar = refs.energy_bar_flow.add{type = "progressbar", name = "magmatic-stabilizer-energy-usage-bar"}
+    refs.energy_bar.style.horizontally_stretchable = true
 
-    refs.steam_bar = refs.steam_usage_frame.add{type = "progressbar", style = "production_progressbar", name = "magmatic-stabilizer-steam-usage-bar"}
-    refs.steam_current_label = refs.steam_usage_frame.add{type = "label", name = "magmatic-stabilizer-steam-current-label", caption = "Current Usage: 0 Steam / second"}
-    refs.steam_target_label = refs.steam_usage_frame.add{type = "label", name = "magmatic-stabilizer-steam-target-label", caption = "Target Usage: 80 Steam / second"}
+    refs.energy_current_flow = refs.energy_usage_frame.add{type = "flow", direciton = "horizontal", style = "player_input_horizontal_flow"}
+    refs.energy_current_label = refs.energy_current_flow.add{type = "label", name = "magmatic-stabilizer-energy-current-label", caption = "Current Usage:", style = "description_property_name_label"}
+    refs.energy_current_empty = refs.energy_current_flow.add{type = "empty-widget"}
+    refs.energy_current_empty.style.horizontally_stretchable = true
+    refs.energy_current_label_number = refs.energy_current_flow.add{type = "label", name = "magmatic-stabilizer-energy-current-label-number", caption = "0 MW"}
+
+    refs.energy_target_flow = refs.energy_usage_frame.add{type = "flow", direciton = "horizontal", style = "player_input_horizontal_flow"}
+    refs.energy_target_label = refs.energy_target_flow.add{type = "label", name = "magmatic-stabilizer-energy-target-label", caption = "Target Usage:", style = "description_property_name_label"}
+    refs.energy_target_empty = refs.energy_target_flow.add{type = "empty-widget"}
+    refs.energy_target_empty.style.horizontally_stretchable = true
+    refs.energy_target_label_number = refs.energy_target_flow.add{type = "label", name = "magmatic-stabilizer-energy-target-label-number", caption = "10 MW"}
+
+    refs.lower_frame.add{type="line", direction = "vertical"}
+
+    refs.steam_usage_frame = refs.lower_frame.add{type = "flow", direction = "vertical", style = "vertical_flow"}
+    --refs.steam_usage_frame.horizontally_stretchable = true
+
+    refs.steam_bar_flow = refs.steam_usage_frame.add{type = "flow", style = "vertical_flow", direction = "vertical"}
+    
+    refs.steam_bar_label_flow = refs.steam_bar_flow.add{type = "flow", style = "horizontal_flow", direction = "horizontal"}
+    refs.steam_bar_label = refs.steam_bar_label_flow.add{type = "label", caption = "Steam:", style = "description_property_name_label"}
+    refs.steam_bar_label_number = refs.steam_bar_label_flow.add{type = "label", caption = "0 / 10000"}
+
+    refs.steam_bar = refs.steam_bar_flow.add{type = "progressbar", name = "magmatic-stabilizer-steam-usage-bar"}
+    refs.steam_bar.style.horizontally_stretchable = true
+    refs.steam_bar.style.color = {0.5, 0.5, 0.5}
+
+    refs.steam_current_flow = refs.steam_usage_frame.add{type = "flow", direciton = "horizontal", style = "player_input_horizontal_flow"}
+    refs.steam_current_label = refs.steam_current_flow.add{type = "label", name = "magmatic-stabilizer-steam-current-label", caption = "Current Usage:", style = "description_property_name_label"}
+    refs.steam_current_empty = refs.steam_current_flow.add{type = "empty-widget"}
+    refs.steam_current_empty.style.horizontally_stretchable = true
+    refs.steam_current_label_number = refs.steam_current_flow.add{type = "label", name = "magmatic-stabilizer-steam-current-label-number", caption = "0 Steam / second"}
+
+    refs.steam_target_flow = refs.steam_usage_frame.add{type = "flow", direciton = "horizontal", style = "player_input_horizontal_flow"}
+    refs.steam_target_label = refs.steam_target_flow.add{type = "label", name = "magmatic-stabilizer-steam-target-label", caption = "Target Usage:", style = "description_property_name_label"}
+    refs.steam_target_empty = refs.steam_target_flow.add{type = "empty-widget"}
+    refs.steam_target_empty.style.horizontally_stretchable = true
+    refs.steam_target_label_number = refs.steam_target_flow.add{type = "label", name = "magmatic-stabilizer-steam-target-label-number", caption = "80 Steam / second"}
 
     refs.main_frame.force_auto_center()
     player.opened = refs.main_frame
@@ -536,7 +593,7 @@ magmatic_stabilizer.on_gui_value_changed = function (event)
 
         global.magmatic_stabilizers.stabilizers[global.magmatic_stabilizers.open_guis[event.player_index].entity.unit_number].stabilization_level = event.element.slider_value
 
-        refs.stabilization_level_label.caption = "Stabilization Level " .. tostring(event.element.slider_value)
+        refs.stabilization_level_label_number.caption = tostring(event.element.slider_value)
     end
 end
 
