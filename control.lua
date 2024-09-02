@@ -9,12 +9,14 @@ caster = require("scripts/caster")
 
 require("scripts/informatron")
 
-handler.add_libraries{
-    caster,
-    magmacyte,
-    magmatic_stabilizer
-}
+script.on_init(function()
 
+    thorium_ore_spawn.on_init()
+    magmacyte.on_init()
+    magmatic_stabilizer.on_init()
+    caster.on_init()
+
+end)
 
 script.on_event(
     {
@@ -40,33 +42,95 @@ script.on_event(
     end
 )
 
+    -- [defines.events.on_gui_opened] = magmatic_stabilizer.on_gui_opened,
+    -- [defines.events.on_gui_click] = magmatic_stabilizer.on_gui_click,
+    -- [defines.events.on_gui_closed] = magmatic_stabilizer.on_gui_closed,
+    -- [defines.events.on_gui_value_changed] = magmatic_stabilizer.on_gui_value_changed,
+
 script.on_event(
     {
-        defines.events.on_player_created
+        defines.events.on_script_trigger_effect
     },
     function (event)
-        
+        if event.effect_id == "caster-created" then
+            caster.on_built_entity(event)
+        elseif event.effect_id == "magmacyte-main-hole-created" then
+            magmacyte.on_main_hole_generated(event)
+        elseif event.effect_id == "magmatic-stabilizer-created" then
+            magmatic_stabilizer.on_magmatic_stabilizer_created(event)
+        elseif event.effect_id == "magmacyte-pump-created" then 
+            magmatic_stabilizer.on_magmactye_pump_created(event)
+        end
     end
 )
 
+script.on_event(
+    {
+        defines.events.on_tick
+    },
+    function (event)
+        magmatic_stabilizer.on_tick(event)
+    end
+)
+
+
+script.on_event(
+    {
+        defines.events.on_gui_opened
+    },
+    function (event)
+        magmatic_stabilizer.on_gui_opened(event)
+    end
+)
+
+
+script.on_event(
+    {
+        defines.events.on_gui_click
+    },
+    function (event)
+        magmatic_stabilizer.on_gui_click(event)
+    end
+)
+
+
+script.on_event(
+    {
+        defines.events.on_gui_closed
+    },
+    function (event)
+        magmatic_stabilizer.on_gui_closed(event)
+    end
+)
+
+script.on_event(
+    {
+        defines.events.on_gui_value_changed
+    },
+    function (event)
+        magmatic_stabilizer.on_gui_value_changed(event)
+    end
+)
+
+
+
 function on_built_entity (event) 
-    --game.print("boner")
+
     if not event["created_entity"] then
         return
     end
 
     if event["created_entity"].name == "caster" then
-        --game.print("running caster on built")
-        --caster.on_built_entity(event.created_entity)
+
     end
 end
 
 function on_destroyed_entity (event) 
-    --game.print("boner2")
+    game.print("boner2")
     if not event["entity"] then
         return
     end
-
+    game.print(event["entity"].name)
     if event["entity"].name == "thorium-rock" then
         thorium_ore_spawn.on_destroyed_entity(event.entity)
     elseif event["entity"].name == "caster" then

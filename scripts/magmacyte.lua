@@ -17,9 +17,9 @@ magmacyte.verify_magmacyte = function ()
     }
 end
 
-script.on_init(function()
+magmacyte.on_init = function()
     magmacyte.verify_magmacyte()
-end)
+end
 
 magmacyte.get_main_from_geyser = function (geyser)
     magmacyte.verify_magmacyte()

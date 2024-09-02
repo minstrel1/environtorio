@@ -1,8 +1,9 @@
 caster = {}
 
-script.on_init(function()
+caster.on_init = function ()
+    log("we are initalizing the fucking casters")
     global.casters = global.casters or {}
-end)
+end
 
 caster.on_built_entity = function (event)
 
@@ -83,6 +84,7 @@ end
 
 
 caster.on_destroyed_entity = function (entity)
+    game.print("why")
     if global.casters[entity.unit_number] then
         if global.casters[entity.unit_number].loader then
             global.casters[entity.unit_number].loader.destroy()

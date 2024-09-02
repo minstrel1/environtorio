@@ -58,9 +58,9 @@ magmatic_stabilizer.verify_stabilizers = function ()
     }
 end
 
-script.on_init(function()
+magmatic_stabilizer.on_init = function()
     magmatic_stabilizer.verify_stabilizers()
-end)
+end
 
 magmatic_stabilizer.get_stabilizer_from_main = function (main)
     magmatic_stabilizer.verify_stabilizers()
