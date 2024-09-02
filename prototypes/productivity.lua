@@ -9,16 +9,21 @@ local recipes = {
     "basic-copper-plate-casting",
     "basic-copper-cable-casting",
     "basic-iron-plate-casting",
-    "basic-iron-gear-casting",
+    "basic-iron-gear-wheel-casting",
     "basic-iron-beam-casting",
     "basic-iron-stick-casting",
+    "basic-pipe-casting",
+    "basic-pipe-to-ground-casting",
     "basic-steel-plate-casting",
-    "basic-steel-gear-casting",
+    "basic-steel-gear-wheel-casting",
     "basic-steel-beam-casting",
+    "basic-steel-pipe-casting",
+    "basic-steel-pipe-to-ground-casting",
     "basic-imersium-plate-casting",
-    "basic-imersium-gear-casting",
+    "basic-imersium-gear-wheel-casting",
     "basic-imersium-beam-casting",
-    "advanced-glass-casting"
+    "basic-glass-casting",
+    "basic-silicon-casting",
 }
 
 for _, v in pairs(recipes) do

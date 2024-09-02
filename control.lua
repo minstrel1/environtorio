@@ -1,6 +1,4 @@
 
-local handler = require "__core__.lualib.event_handler"
-
 thorium_ore_spawn = require("scripts/thorium-ore-spawn")
 magmacyte = require("scripts/magmacyte")
 magmatic_stabilizer = require("scripts/magmatic-stabilizer")
@@ -126,11 +124,11 @@ function on_built_entity (event)
 end
 
 function on_destroyed_entity (event) 
-    game.print("boner2")
+
     if not event["entity"] then
         return
     end
-    game.print(event["entity"].name)
+
     if event["entity"].name == "thorium-rock" then
         thorium_ore_spawn.on_destroyed_entity(event.entity)
     elseif event["entity"].name == "caster" then
@@ -140,4 +138,5 @@ function on_destroyed_entity (event)
     elseif event["entity"].name == "magmacyte-pump" then
         magmatic_stabilizer.on_destroyed_pump(event.entity)
     end
+    
 end

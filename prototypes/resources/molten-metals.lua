@@ -7,7 +7,7 @@ data:extend{
         heat_capacity = "1KJ",
         base_color = {r=1, g=0.47, b=0.01},
         flow_color = {r=0.7, g=0.7, b=0.7},
-        icon = "__environtorio__/graphics/icons/molten-metal.png",
+        icon = "__environtorio__/graphics/icons/molten-iron.png",
         icon_size = 64, icon_mipmaps = 4,
         order = "a[fluid]-a[molten-iron]"
     },
@@ -19,7 +19,7 @@ data:extend{
         heat_capacity = "1KJ",
         base_color = {r=1, g=0.47, b=0.01},
         flow_color = {r=0.7, g=0.7, b=0.7},
-        icon = "__environtorio__/graphics/icons/molten-metal.png",
+        icon = "__environtorio__/graphics/icons/molten-copper.png",
         icon_size = 64, icon_mipmaps = 4,
         order = "a[fluid]-a[molten-copper]"
     },
@@ -31,7 +31,7 @@ data:extend{
         heat_capacity = "1KJ",
         base_color = {r=1, g=0.47, b=0.01},
         flow_color = {r=0.7, g=0.7, b=0.7},
-        icon = "__environtorio__/graphics/icons/molten-metal.png",
+        icon = "__environtorio__/graphics/icons/molten-steel.png",
         icon_size = 64, icon_mipmaps = 4,
         order = "a[fluid]-a[molten-steel]"
     },
@@ -43,7 +43,7 @@ data:extend{
         heat_capacity = "1KJ",
         base_color = {r=1, g=0.47, b=0.01},
         flow_color = {r=0.7, g=0.7, b=0.7},
-        icon = "__environtorio__/graphics/icons/molten-metal.png",
+        icon = "__environtorio__/graphics/icons/molten-glass.png",
         icon_size = 64, icon_mipmaps = 4,
         order = "a[fluid]-a[molten-glass]"
     },
@@ -55,7 +55,7 @@ data:extend{
         heat_capacity = "1KJ",
         base_color = {r=1, g=0.47, b=0.01},
         flow_color = {r=0.7, g=0.7, b=0.7},
-        icon = "__environtorio__/graphics/icons/molten-metal.png",
+        icon = "__environtorio__/graphics/icons/molten-silicon.png",
         icon_size = 64, icon_mipmaps = 4,
         order = "a[fluid]-a[molten-silicon]"
     },
@@ -67,7 +67,7 @@ data:extend{
         heat_capacity = "1KJ",
         base_color = {r=1, g=0.47, b=0.01},
         flow_color = {r=0.7, g=0.7, b=0.7},
-        icon = "__environtorio__/graphics/icons/molten-metal.png",
+        icon = "__environtorio__/graphics/icons/molten-raremetals.png",
         icon_size = 64, icon_mipmaps = 4,
         order = "a[fluid]-a[molten-rare-metals]"
     },
@@ -79,7 +79,7 @@ data:extend{
         heat_capacity = "1KJ",
         base_color = {r=1, g=0.47, b=0.01},
         flow_color = {r=0.7, g=0.7, b=0.7},
-        icon = "__environtorio__/graphics/icons/molten-metal.png",
+        icon = "__environtorio__/graphics/icons/molten-imersite.png",
         icon_size = 64, icon_mipmaps = 4,
         order = "a[fluid]-a[molten-imersium]"
     },
