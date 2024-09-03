@@ -21,6 +21,8 @@ require("prototypes/recipes/thorium")
 require("prototypes/recipes/metallurgy")
 require("prototypes/recipes/casting")
 
+require("prototypes/recipes/magmacyte-processing")
+
 require("prototypes/tech-cards")
 
 require("prototypes/technology")
