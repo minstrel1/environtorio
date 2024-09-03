@@ -12,7 +12,7 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/molten-metal.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "smelting",
+        subgroup = "iron-processing",
         order = "ma[basic-iron-melting]",
         results = {
             {type="fluid", name = "molten-iron", amount = 750 },
@@ -32,7 +32,7 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/molten-metal.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "smelting",
+        subgroup = "copper-processing",
         order = "ma[basic-copper-melting]",
         results = {
             {type="fluid", name = "molten-copper", amount = 750 },
@@ -52,7 +52,7 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/molten-metal.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "smelting",
+        subgroup = "rare-metals-processing",
         order = "ma[basic-rare-metals-melting]",
         results = {
             {type="fluid", name = "molten-rare-metals", amount = 750 },
@@ -73,8 +73,8 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/molten-metal.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "smelting",
-        order = "ma[advanced-iron-melting]",
+        subgroup = "iron-processing",
+        order = "mb[advanced-iron-melting]",
         results = {
             {type="fluid", name = "molten-iron", amount = 1000 },
         },
@@ -94,8 +94,8 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/molten-metal.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "smelting",
-        order = "ma[advanced-copper-melting]",
+        subgroup = "copper-processing",
+        order = "mb[advanced-copper-melting]",
         results = {
             {type="fluid", name = "molten-copper", amount = 1000 },
         },
@@ -115,8 +115,8 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/molten-metal.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "smelting",
-        order = "ma[advanced-rare-metals-melting]",
+        subgroup = "rare-metals-processing",
+        order = "mb[advanced-rare-metals-melting]",
         results = {
             {type="fluid", name = "molten-rare-metals", amount = 1000 },
         },
@@ -135,8 +135,8 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/molten-metal.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "infusing",
-        order = "na[basic-steel-infusing]",
+        subgroup = "steel-processing",
+        order = "oa[basic-steel-infusing]",
         results = {
             {type="fluid", name = "molten-steel", amount = 125 },
         },
@@ -155,8 +155,8 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/molten-metal.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "infusing",
-        order = "na[basic-imersium-infusing]",
+        subgroup = "imersium-processing",
+        order = "oa[basic-imersium-infusing]",
         results = {
             {type="fluid", name = "molten-imersium", amount = 250 },
         },
@@ -174,8 +174,8 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/molten-metal.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "infusing",
-        order = "na[basic-imersium-infusing]",
+        subgroup = "sand-processing",
+        order = "ob[advanced-silicon-purification]",
         results = {
             {type="fluid", name = "molten-silicon", amount = 250 },
         },
@@ -194,8 +194,8 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/molten-metal.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "smelting",
-        order = "mb[basic-copper-melting]",
+        subgroup = "sand-processing",
+        order = "oa[advanced-glass-melting]",
         results = {
             {type="fluid", name = "molten-glass", amount = 200 },
         },

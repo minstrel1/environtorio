@@ -111,7 +111,7 @@ magmacyte_geyser.minable = {
     {
     {
         type = "fluid",
-        name = "magmacyte",
+        name = "unrefined-magmacyte",
         amount_min = 10,
         amount_max = 10,
         probability = 1
@@ -142,6 +142,48 @@ data:extend{
         icon_size = 64, icon_mipmaps = 4,
         order = "a[fluid]-a[magmacyte]"
     },
+    {
+        type = "fluid",
+        name = "unrefined-magmacyte",
+        default_temperature = 2000,
+        max_temperature = 2000,
+        heat_capacity = "1KJ",
+        base_color = {r=1, g=0.47, b=0.01},
+        flow_color = {r=0.7, g=0.7, b=0.7},
+        icon = "__environtorio__/graphics/icons/molten-metal.png",
+        icon_size = 64, icon_mipmaps = 4,
+        order = "a[fluid]-a[unrefined-magmacyte]"
+    },
+    {
+        type = "fluid",
+        name = "magmatic-precursor",
+        default_temperature = 2000,
+        max_temperature = 2000,
+        heat_capacity = "1KJ",
+        base_color = {r=1, g=0.47, b=0.01},
+        flow_color = {r=0.7, g=0.7, b=0.7},
+        icon = "__environtorio__/graphics/icons/molten-metal.png",
+        icon_size = 64, icon_mipmaps = 4,
+        order = "a[fluid]-a[magmatic-precursor]"
+    },
+    {
+        type = "item",
+        name = "volcanic-slag",
+        icon = "__base__/graphics/icons/stone.png",
+        icon_size = 64, icon_mipmaps = 4,
+        subgroup = "magmacyte",
+        order = "a[volcanic-slag]",
+        stack_size = 100
+    },
+    {
+        type = "item",
+        name = "fluorite",
+        icon = "__environtorio__/graphics/icons/thorium-pellets.png",
+        icon_size = 64, icon_mipmaps = 4,
+        subgroup = "magmacyte",
+        order = "b[fluorite]",
+        stack_size = 100
+  }
 }
 
 -- data:extend({

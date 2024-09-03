@@ -12,8 +12,8 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-iron-plate-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "iron-casting",
-        order = "oa[basic-iron-plate-casting]",
+        subgroup = "iron-processing",
+        order = "o-e[basic-iron-plate-casting]",
         results = {
             {type="item", name = "iron-plate", amount = 10 },
         },
@@ -32,8 +32,8 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-iron-stick-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "iron-casting",
-        order = "oa[basic-iron-stick-casting]",
+        subgroup = "iron-processing",
+        order = "o-f[basic-iron-stick-casting]",
         results = {
             {type="item", name = "iron-stick", amount = 30 },
         },
@@ -52,8 +52,8 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-iron-gear-wheel-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "iron-casting",
-        order = "oa[basic-iron-gear-wheel-casting]",
+        subgroup = "iron-processing",
+        order = "o-g[basic-iron-gear-wheel-casting]",
         results = {
             {type="item", name = "iron-gear-wheel", amount = 15 },
         },
@@ -72,8 +72,8 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-iron-beam-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "iron-casting",
-        order = "oa[basic-iron-plate-casting]",
+        subgroup = "iron-processing",
+        order = "o-h[basic-iron-plate-casting]",
         results = {
             {type="item", name = "iron-beam", amount = 15 },
         },
@@ -92,8 +92,8 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-pipe-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "iron-casting",
-        order = "oa[basic-iron-plate-casting]",
+        subgroup = "iron-processing",
+        order = "o-i[basic-pipe-casting]",
         results = {
             {type="item", name = "pipe", amount = 4 },
         },
@@ -112,8 +112,8 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-pipe-to-ground-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "iron-casting",
-        order = "oa[basic-iron-plate-casting]",
+        subgroup = "iron-processing",
+        order = "o-j[basic-pipe-to-ground-casting]",
         results = {
             {type="item", name = "pipe-to-ground", amount = 2 },
         },
@@ -132,7 +132,7 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-copper-plate-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "copper-casting",
+        subgroup = "copper-processing",
         order = "ob[basic-copper-plate-casting]",
         results = {
             {type="item", name = "copper-plate", amount = 10 },
@@ -152,7 +152,7 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-copper-cable-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "copper-casting",
+        subgroup = "copper-processing",
         order = "ob[basic-copper-cable-casting]",
         results = {
             {type="item", name = "copper-cable", amount = 30 },
@@ -172,8 +172,8 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-glass-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "casting",
-        order = "od[basic-glass-casting]",
+        subgroup = "sand-processing",
+        order = "of[basic-glass-casting]",
         results = {
             {type="item", name = "glass", amount = 10 },
         },
@@ -192,8 +192,8 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-silicon-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "casting",
-        order = "od[basic-glass-casting]",
+        subgroup = "sand-processing",
+        order = "og[basic-glass-casting]",
         results = {
             {type="item", name = "silicon", amount = 10 },
         },
@@ -212,7 +212,7 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-steel-plate-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "steel-casting",
+        subgroup = "steel-processing",
         order = "oc[basic-steel-plate-casting]",
         results = {
             {type="item", name = "steel-plate", amount = 10 },
@@ -232,7 +232,7 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-steel-gear-wheel-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "steel-casting",
+        subgroup = "steel-processing",
         order = "oc[basic-steel-gear-wheel-casting]",
         results = {
             {type="item", name = "steel-gear-wheel", amount = 15 },
@@ -252,7 +252,7 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-steel-beam-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "steel-casting",
+        subgroup = "steel-processing",
         order = "oc[basic-steel-beam-casting]",
         results = {
             {type="item", name = "steel-beam", amount = 15 },
@@ -272,7 +272,7 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-steel-pipe-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "steel-casting",
+        subgroup = "steel-processing",
         order = "oc[basic-steel-pipe-casting]",
         results = {
             {type="item", name = "kr-steel-pipe", amount = 4 },
@@ -292,7 +292,7 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-steel-pipe-to-ground-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "steel-casting",
+        subgroup = "steel-processing",
         order = "oc[basic-steel-pipe-to-ground-casting]",
         results = {
             {type="item", name = "kr-steel-pipe-to-ground", amount = 2 },
@@ -312,7 +312,7 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-rare-metals-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "casting",
+        subgroup = "rare-metals-processing",
         order = "oc[basic-rare-metals-casting]",
         results = {
             {type="item", name = "rare-metals", amount = 10 },
@@ -332,7 +332,7 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-imersium-plate-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "imersium-casting",
+        subgroup = "imersium-processing",
         order = "og[basic-imersium-plate-casting]",
         results = {
             {type="item", name = "imersium-plate", amount = 10 },
@@ -352,7 +352,7 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-imersium-gear-wheel-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "imersium-casting",
+        subgroup = "imersium-processing",
         order = "og[basic-imersium-gear-wheel-casting]",
         results = {
             {type="item", name = "imersium-gear-wheel", amount = 15 },
@@ -372,7 +372,7 @@ data:extend{
         },
         icon = "__environtorio__/graphics/icons/basic-imersium-beam-casting.png",
         icon_size = 64, icon_mipmaps = 4,
-        subgroup = "imersium-casting",
+        subgroup = "imersium-processing",
         order = "og[basic-imersium-beam-casting]",
         results = {
             {type="item", name = "imersium-beam", amount = 15 },

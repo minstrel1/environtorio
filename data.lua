@@ -2,6 +2,8 @@ require("prototypes/recipe-categories")
 require("prototypes/basegame-modifications")
 require("prototypes/k2-modifications")
 
+require("prototypes/item-categories")
+
 require("prototypes/machines/electronics-facility")
 require("prototypes/machines/minifuge")
 require("prototypes/machines/foundry")
