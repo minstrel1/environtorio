@@ -14,5 +14,8 @@ data:extend{{name="magmacyte-processing", type = "item-subgroup", group = "inter
 
 data:extend{{name="imersium-processing", type = "item-subgroup", group = "intermediate-products", order = "c-b-z"}}
 
+data:extend{{name="advanced-casting", type = "item-subgroup", group = "intermediate-products", order = "x"}}
+
 data:extend{{name="metallurgic-infusing", type="recipe-category"}}
 data:extend{{name="casting", type="recipe-category"}}
+data:extend{{name="advanced-casting", type="recipe-category"}}

@@ -379,5 +379,45 @@ data:extend{
         },
         main_product = "",
     },
+    {
+        type = "recipe",
+        name = "inserter-parts-casting",
+        energy_required = 2,
+        enabled = true,
+        category = "advanced-casting",
+        always_show_made_in = true,
+        ingredients = {
+            {type="fluid", name = "molten-iron", amount = 300},
+            {type="fluid", name = "water", amount = 200},
+        },
+        icon = "__environtorio__/graphics/icons/basic-imersium-beam-casting.png",
+        icon_size = 64, icon_mipmaps = 4,
+        subgroup = "advanced-casting",
+        order = "og[basic-imersium-beam-casting]",
+        results = {
+            {type="item", name = "inserter-parts", amount = 4 },
+        },
+        main_product = "",
+    },
+    {
+        type = "recipe",
+        name = "inserter-parts-casting",
+        energy_required = 2,
+        enabled = true,
+        category = "advanced-casting",
+        always_show_made_in = true,
+        ingredients = {
+            {type="fluid", name = "water", amount = 200, fluidbox_index = 1},
+            {type="fluid", name = "molten-iron", amount = 300, fluidbox_index = 2},
+        },
+        icon = "__environtorio__/graphics/icons/basic-imersium-beam-casting.png",
+        icon_size = 64, icon_mipmaps = 4,
+        subgroup = "advanced-casting",
+        order = "og[basic-imersium-beam-casting]",
+        results = {
+            {type="item", name = "inserter-parts", amount = 4 },
+        },
+        main_product = "",
+    },
     
 }

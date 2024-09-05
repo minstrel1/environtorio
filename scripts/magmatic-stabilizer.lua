@@ -315,7 +315,7 @@ magmatic_stabilizer.update_stabilizer = function (data)
 
     elseif data.activated == false then
 
-        data.main_entity.energy = data.main_entity.energy - (((math.random() / 2.5) + 9.6) * math.pow(10, 6) / 60)
+        data.main_entity.energy = data.main_entity.energy - (math.pow(10, 6) / 60) -- ((math.random() / 2.5) + 9.6)
 
         local difference = data.last_energy - data.main_entity.energy
 

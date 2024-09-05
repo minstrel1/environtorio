@@ -1,8 +1,8 @@
 
-data.raw["item-subgroup"]["barrel"].order = "v"
-data.raw["item-subgroup"]["fill-barrel"].order = "w"
-data.raw["item-subgroup"]["empty-barrel"].order = "x"
-data.raw["item-subgroup"]["intermediate-product"].order = "y"
+data.raw["item-subgroup"]["barrel"].order = "t"
+data.raw["item-subgroup"]["fill-barrel"].order = "u"
+data.raw["item-subgroup"]["empty-barrel"].order = "v"
+data.raw["item-subgroup"]["intermediate-product"].order = "w"
 data.raw["item-subgroup"]["science-pack"].order = "z"
 
 data.raw["assembling-machine"]["assembling-machine-1"].crafting_categories = {"basic-crafting", "crafting", "advanced-crafting", "electronics-processing"}
