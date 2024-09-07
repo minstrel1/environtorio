@@ -21,8 +21,8 @@ for input_path in glob.glob("casting_overlay_input/*.png"):
 
     new_image = Image.new("RGBA", (120, 64), (0, 0, 0, 0))
 
-    new_image.paste(input_crop, (16, 16, 64, 64), mask = input_crop)
     new_image.paste(overlay ,(0, 0, 64, 64), mask = overlay)
+    new_image.paste(input_crop, (16, 16, 64, 64), mask = input_crop)
 
     advanced_image = new_image.copy()
     advanced_image.paste(snowslurry, (4, 36, 28, 60), mask = snowslurry)
