@@ -1,10 +1,16 @@
 thorium_ore_spawn = {}
 
+thorium_ore_spawn.name = "thorium_ore_spawn"
+
 thorium_ore_spawn.on_built_entity = function (entity) 
 
 end
 
-thorium_ore_spawn.on_destroyed_entity = function (entity) 
+thorium_ore_spawn.on_destroyed_entity = function (event) 
+    local entity = event.entity
+
+    if event.entity.name ~= "thorium-rock" then return end
+
     local name   = 'thorium-ore'
     local amount = 15000
     local tiles  = 150
@@ -63,6 +69,15 @@ end
 thorium_ore_spawn.on_init = function (event)
 
 end
+
+thorium_ore_spawn.events = {
+    [defines.events.on_entity_died] = thorium_ore_spawn.on_destroyed_entity,
+    [defines.events.on_pre_player_mined_item] = thorium_ore_spawn.on_destroyed_entity,
+    [defines.events.on_robot_pre_mined] = thorium_ore_spawn.on_destroyed_entity,
+    [defines.events.script_raised_destroy] = thorium_ore_spawn.on_destroyed_entity,
+    on_init = thorium_ore_spawn.on_init,
+    on_boner = thorium_ore_spawn.on_init,
+}
 
 
 return thorium_ore_spawn

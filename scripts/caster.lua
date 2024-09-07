@@ -1,5 +1,7 @@
 caster = {}
 
+caster.name = "caster"
+
 caster.on_init = function ()
     global.casters = global.casters or {}
 end
@@ -82,19 +84,29 @@ end
 
 
 
-caster.on_destroyed_entity = function (entity)
+caster.on_destroyed_entity = function (event)
+
+    local entity = event.entity
+
+    if not event.entity.valid or entity.name ~= "caster" then
+        return
+    end
 
     if global.casters[entity.unit_number] then
         if global.casters[entity.unit_number].loader then
             global.casters[entity.unit_number].loader.destroy()
         end
     end
-    entity.destroy()
+   entity.destroy()
 
 end
 
 caster.events = {
-    [defines.events.on_script_trigger_effect] = caster.on_built_entity
+    [defines.events.on_script_trigger_effect] = caster.on_built_entity,
+    [defines.events.on_entity_died] = caster.on_destroyed_entity,
+    [defines.events.on_pre_player_mined_item] = caster.on_destroyed_entity,
+    [defines.events.on_robot_pre_mined] = caster.on_destroyed_entity,
+    on_init = caster.on_init,
 }
 
 return caster

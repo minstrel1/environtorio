@@ -2,6 +2,8 @@ local math2d = require("__core__/lualib/math2d")
 
 local magmacyte = {}
 
+magmacyte.name = "magmacyte"
+
 function return_as_userdata (entity)
     return entity.surface.find_entity(entity.name, entity.position)
 end
@@ -154,6 +156,7 @@ end
 
 magmacyte.events = {
     [defines.events.on_script_trigger_effect] = magmacyte.on_main_hole_generated,
+    on_init = magmacyte.on_init,
 }
 
 return magmacyte

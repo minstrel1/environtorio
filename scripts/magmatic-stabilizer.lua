@@ -6,6 +6,8 @@ end
 
 magmatic_stabilizer = {}
 
+magmatic_stabilizer.name = "magmatic_stabilizer"
+
 magmatic_stabilizer.stabilization_levels = {
     {
         eruption_chance = 0.5,
@@ -195,6 +197,15 @@ magmatic_stabilizer.on_magmatic_stabilizer_created = function (event)
 
     entity.destroy()
 
+end
+
+magmatic_stabilizer.on_destroyed_entity = function (event)
+    if not event.entity.valid then return end
+    if event["entity"].name == "magmatic-stabilizer" then
+        magmatic_stabilizer.on_destroyed_stabilizer(event.entity)
+    elseif event["entity"].name == "magmacyte-pump" then
+        magmatic_stabilizer.on_destroyed_pump(event.entity)
+    end
 end
 
 magmatic_stabilizer.on_destroyed_stabilizer = function (entity)
@@ -589,7 +600,7 @@ end
 magmatic_stabilizer.on_gui_value_changed = function (event)
     if event.element.name == "magmatic-stabilizer-level-selector" then
         local refs = global.magmatic_stabilizers.open_guis[event.player_index].gui
-        local stabilization_data = magmatic_stabilizer.stabilization_levels[event.element.slider_value]
+        local stabilization_data = magmatic_stabilizer.stabition_levels[event.element.slider_value]
 
         global.magmatic_stabilizers.stabilizers[global.magmatic_stabilizers.open_guis[event.player_index].entity.unit_number].stabilization_level = event.element.slider_value
 
@@ -599,11 +610,16 @@ end
 
 magmatic_stabilizer.events = {
     [defines.events.on_script_trigger_effect] = magmatic_stabilizer.on_entity_created,
+    [defines.events.on_entity_died] = magmatic_stabilizer.on_destroyed_entity,
+    [defines.events.on_pre_player_mined_item] = magmatic_stabilizer.on_destroyed_entity,
+    [defines.events.on_robot_pre_mined] = magmatic_stabilizer.on_destroyed_entity,
+    [defines.events.script_raised_destroy] = magmatic_stabilizer.on_destroyed_entity,
     [defines.events.on_tick] = magmatic_stabilizer.on_tick,
     [defines.events.on_gui_opened] = magmatic_stabilizer.on_gui_opened,
     [defines.events.on_gui_click] = magmatic_stabilizer.on_gui_click,
     [defines.events.on_gui_closed] = magmatic_stabilizer.on_gui_closed,
     [defines.events.on_gui_value_changed] = magmatic_stabilizer.on_gui_value_changed,
+    on_init = magmatic_stabilizer.on_init,
 }
 
 return magmatic_stabilizer
