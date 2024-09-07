@@ -43,7 +43,7 @@ data:extend{
         heat_capacity = "1KJ",
         base_color = {r=1, g=0.47, b=0.01},
         flow_color = {r=0.7, g=0.7, b=0.7},
-        icon = "__environtorio__/graphics/icons/molten-glass.png",
+        icon = "__environtorio__/graphics/icons/liquid-plastic.png",
         icon_size = 64, icon_mipmaps = 4,
         order = "a[fluid]-a[liquid-plastic]"
     },

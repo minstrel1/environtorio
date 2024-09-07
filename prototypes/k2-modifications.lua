@@ -14,3 +14,4 @@ table.insert(data.raw.technology["plastics"].prerequisites, "basic-metallurgy")
 table.insert(data.raw.technology["plastics"].effects, {type = "unlock-recipe", recipe = "basic-plastic-casting"})
 
 data.raw["recipe"]["plastic-bar"].results = {{type="fluid", name = "liquid-plastic", amount = 10},}
+data.raw["recipe"]["plastic-bar"].subgroup = "raw-material"
