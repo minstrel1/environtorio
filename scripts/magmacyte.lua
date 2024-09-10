@@ -4,7 +4,7 @@ local magmacyte = {}
 
 magmacyte.name = "magmacyte"
 
-function return_as_userdata (entity)
+local function return_as_userdata (entity)
     return entity.surface.find_entity(entity.name, entity.position)
 end
 

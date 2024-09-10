@@ -1,5 +1,5 @@
 -- idfk what remote it but it adds it to informatron????
-remote.add_interface("extended-industries", {
+remote.add_interface("environtorio", {
     informatron_menu = function(data)
       return mymod_menu(data.player_index)
     end,

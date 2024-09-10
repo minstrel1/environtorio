@@ -11,7 +11,7 @@ thorium_ore.stages = {
         filename = "__environtorio__/graphics/entity/thorium/thorium-ore.png",
         priority = "extra-high",
         size = 128,
-        frame_count = 2,
+        frame_count = 8,
         variation_count = 8,
         scale = 0.5, 
     }

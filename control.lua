@@ -1,17 +1,21 @@
 event_handler = require("scripts/events.lua")
 
+boulder = require("scripts/boulder")
 thorium_ore_spawn = require("scripts/thorium-ore-spawn")
 magmacyte = require("scripts/magmacyte")
 magmatic_stabilizer = require("scripts/magmatic-stabilizer")
 caster = require("scripts/caster")
+frostnode = require("scripts/frostnode")
 
 log("the string for defines.events.on_built_entity is " .. defines.events.on_built_entity )
 
 event_handler.add_libraries({
+    boulder,
     thorium_ore_spawn, 
     magmacyte,
     magmatic_stabilizer,
     caster,
+    frostnode,
 })
 
 require("scripts/informatron")

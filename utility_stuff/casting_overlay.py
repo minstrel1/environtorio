@@ -54,3 +54,4 @@ for input_path in glob.glob("casting_overlay_input/*.png"):
     advanced_image.paste(advanced_mip_3, (112, 0, 120, 8))
 
     advanced_image.save("output/advanced-" + file_name + "-casting" + ".png")
+

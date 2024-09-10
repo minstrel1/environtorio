@@ -600,7 +600,7 @@ end
 magmatic_stabilizer.on_gui_value_changed = function (event)
     if event.element.name == "magmatic-stabilizer-level-selector" then
         local refs = global.magmatic_stabilizers.open_guis[event.player_index].gui
-        local stabilization_data = magmatic_stabilizer.stabition_levels[event.element.slider_value]
+        local stabilization_data = magmatic_stabilizer.stabilization_levels[event.element.slider_value]
 
         global.magmatic_stabilizers.stabilizers[global.magmatic_stabilizers.open_guis[event.player_index].entity.unit_number].stabilization_level = event.element.slider_value
 

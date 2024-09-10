@@ -24,6 +24,12 @@ local recipes = {
     "basic-imersium-beam-casting",
     "basic-glass-casting",
     "basic-silicon-casting",
+    "basic-plastic-casting",
+    "advanced-low-density-structure-casting",
+    "advanced-electronic-components-casting",
+    "advanced-engine-unit-casting",
+    "advanced-automation-core-casting",
+    "advanced-inserter-parts-casting",
 }
 
 for _, v in pairs(recipes) do
