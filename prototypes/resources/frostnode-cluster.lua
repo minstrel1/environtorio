@@ -19,8 +19,10 @@ frostnode_sinkhole.collision_box = {{-4.4, -4.4}, {4.4, 4.4}}
 frostnode_sinkhole.selection_box = {{-4.5, -4.5}, {4.5, 4.5}}
 frostnode_sinkhole.collision_mask = {"player-layer", "resource-layer"}
 
-frostnode_sinkhole.stages.sheet.scale = 1
-frostnode_sinkhole.stages_effect.sheets[1].scale = 1
+frostnode_sinkhole.stages.sheet.scale = 2
+frostnode_sinkhole.stages.sheet.hr_version.scale = 1
+frostnode_sinkhole.stages_effect.sheets[1].scale = 2
+frostnode_sinkhole.stages_effect.sheets[1].hr_version.scale = 1
 
 frostnode_sinkhole.minable = {
     mining_time = 2,
